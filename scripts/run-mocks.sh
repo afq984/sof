@@ -8,6 +8,8 @@ set -e
 rm -rf build_ut
 
 mkdir build_ut
+#copy initial defconfig - make it TGL
+cp src/arch/xtensa/configs/tgph_defconfig initial.config
 cd build_ut
 
 cmake -DBUILD_UNIT_TESTS=ON -DBUILD_UNIT_TESTS_HOST=ON ..
@@ -19,5 +21,5 @@ echo test are ${TESTS}
 for test in ${TESTS}
 do
 	echo got ${test}
-	./${test}
+	valgrind --tool=memcheck --track-origins=yes --leak-check=full --show-leak-kinds=all ./${test}
 done

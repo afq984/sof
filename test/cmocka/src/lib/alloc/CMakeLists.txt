@@ -3,8 +3,8 @@
 cmocka_test(alloc
 	alloc.c
 	${PROJECT_SOURCE_DIR}/src/lib/alloc.c
-	${PROJECT_SOURCE_DIR}/src/debug/panic.c
-	${PROJECT_SOURCE_DIR}/src/platform/intel/cavs/lib/memory.c
+	#${PROJECT_SOURCE_DIR}/src/debug/panic.c
+	${PROJECT_SOURCE_DIR}/src/platform/library/lib/memory.c
 	${PROJECT_SOURCE_DIR}/src/spinlock.c
 )
 

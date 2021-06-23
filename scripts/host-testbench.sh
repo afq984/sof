@@ -73,7 +73,7 @@ else
   cat vol.log
   exit 1
 fi
-rm volume_out.raw vol.log
+#rm volume_out.raw vol.log
 
 # test with src
 echo "=========================================================="

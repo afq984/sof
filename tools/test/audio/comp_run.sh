@@ -39,7 +39,7 @@ fi
 #LIB="-a ${COMP}=libsof_${COMP}.so"
 LIB=""
 ARG="-d -r $FS1 -R $FS2 -i $FN_IN -o $FN_OUT -t $TPLG $BINFMT $LIB"
-CMD="$HOST_EXE $ARG"
+CMD="valgrind --tool=memcheck --track-origins=yes --leak-check=full --show-leak-kinds=all $HOST_EXE $ARG"
 export LD_LIBRARY_PATH=$HOST_LIB:$TPLG_LIB
 
 # Run test bench

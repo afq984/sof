@@ -147,7 +147,7 @@ static void print_usage(char *executable)
 	printf("-r 48000 -R 96000 -c 2");
 	printf("-b S16_LE -a vol=libsof_volume.so\n");
 }
-
+#if 0
 /* free components */
 static void free_comps(void)
 {
@@ -177,6 +177,7 @@ static void free_comps(void)
 		}
 	}
 }
+#endif
 
 static void parse_input_args(int argc, char **argv, struct testbench_prm *tp)
 {
@@ -366,8 +367,7 @@ int main(int argc, char **argv)
 	t_exec = (double)(toc - tic) / CLOCKS_PER_SEC;
 	c_realtime = (double)n_out / tp.channels / tp.fs_out / t_exec;
 
-	/* free all components/buffers in pipeline */
-	free_comps();
+
 
 	/* print test summary */
 	printf("==========================================================\n");
@@ -386,6 +386,10 @@ int main(int argc, char **argv)
 	printf("Output sample count: %d\n", n_out);
 	printf("Total execution time: %.2f us, %.2f x realtime\n",
 	       1e3 * t_exec, c_realtime);
+
+	/* free all components/buffers in pipeline */
+	//free_comps();
+	pipeline_free(p);
 
 	/* free all other data */
 	free(tp.bits_in);
