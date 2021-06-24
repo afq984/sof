@@ -3,7 +3,7 @@
 // Copyright(c) 2020 Google LLC. All rights reserved.
 //
 // Author: Pin-chih Lin <johnylin@google.com>
-
+7
 #include <sof/audio/component.h>
 #include <sof/audio/buffer.h>
 #include <sof/audio/drc/drc.h>
