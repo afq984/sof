@@ -3,7 +3,7 @@
 // Copyright(c) 2020 Maxim Integrated All rights reserved.
 //
 // Author: Ryan Lee <ryans.lee@maximintegrated.com>
-
+5
 #include <sof/trace/trace.h>
 #include <sof/ipc/msg.h>
 #include <sof/ut.h>
