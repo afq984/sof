@@ -369,6 +369,7 @@ static struct comp_dev *eq_fir_new(const struct comp_driver *drv,
 	if (ret < 0) {
 		comp_cl_err(&comp_eq_fir, "eq_fir_new(): comp_init_data_blob() failed.");
 		rfree(dev);
+		comp_data_blob_handler_free(cd->model_handler);
 		rfree(cd);
 		return NULL;
 	}

@@ -279,6 +279,7 @@ static struct comp_dev *multiband_drc_new(const struct comp_driver *drv,
 		comp_cl_err(&comp_multiband_drc,
 			    "multiband_drc_new(): comp_init_data_blob() failed.");
 		rfree(dev);
+		comp_data_blob_handler_free(cd->model_handler);
 		rfree(cd);
 		return NULL;
 	}

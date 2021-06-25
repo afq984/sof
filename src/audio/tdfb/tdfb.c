@@ -293,6 +293,7 @@ static struct comp_dev *tdfb_new(const struct comp_driver *drv,
 	if (ret < 0) {
 		comp_cl_err(&comp_tdfb, "tdfb_new(): comp_init_data_blob() failed.");
 		rfree(dev);
+		comp_data_blob_handler_free(cd->model_handler);
 		rfree(cd);
 		return NULL;
 	}

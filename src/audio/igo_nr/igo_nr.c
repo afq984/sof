@@ -334,7 +334,10 @@ static struct comp_dev *igo_nr_new(const struct comp_driver *drv,
 
 err:
 	rfree(dev);
-	rfree(cd);
+	if (cd) {
+		comp_data_blob_handler_free(cd->model_handler);
+		rfree(cd);
+	}
 	return NULL;
 }
 

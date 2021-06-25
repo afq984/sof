@@ -334,8 +334,10 @@ static struct comp_dev *test_keyword_new(const struct comp_driver *drv,
 	return dev;
 
 fail:
-	if (cd)
+	if (cd) {
+		comp_data_blob_handler_free(cd->model_handler);
 		rfree(cd);
+	}
 	rfree(dev);
 	return NULL;
 }
