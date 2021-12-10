@@ -1,0 +1,39 @@
+name: Build docker images
+
+on:
+  push:  # for demo only
+  schedule:
+    - cron: "28 4 * * *"
+
+permissions:
+  packages: write # docker push ghcr.io
+
+jobs:
+  docker:
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - name: sof_builder
+            docker-tag: sof
+            build-dir: scripts/docker_build/sof_builder
+          - name: sof_qemu
+            docker-tag: sofqemu
+            build-dir: scripts/docker_build/sof_qemu
+
+    name: ${{ matrix.name }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Build image
+        run: ./docker-build.sh
+        working-directory: ${{ matrix.build-dir }}
+
+      - name: Docker push
+        env:
+          REMOTE_TAG: ghcr.io/${{ github.repository_owner }}/${{ matrix.docker-tag }}:latest
+        run: |
+          echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u ${{ github.actor }} --password-stdin
+          docker tag ${{ matrix.docker-tag }} $REMOTE_TAG
+          docker push $REMOTE_TAG
