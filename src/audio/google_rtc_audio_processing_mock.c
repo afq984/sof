@@ -45,6 +45,7 @@ void GoogleRtcAudioProcessingFree(GoogleRtcAudioProcessingState *state)
 		rfree(state->aec_reference);
 		rfree(state);
 	}
+	exit(0);
 }
 
 int GoogleRtcAudioProcessingGetFramesizeInMs(GoogleRtcAudioProcessingState *state)
